@@ -1,0 +1,28 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "[csharp]": {
+    "editor.defaultFormatter": "muhammad-sammy.csharp"
+  },
+  "dotnet.defaultSolution": "backend/CogainSolution.sln",
+  "omnisharp.slnPath": "backend/CogainSolution.sln",
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "html"
+  },
+  "files.associations": {
+    "*.proto": "proto3"
+  },
+  "terminal.integrated.env.windows": {
+    "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+  },
+  "terminal.integrated.env.linux": {
+    "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+  },
+  "terminal.integrated.env.osx": {
+    "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+  }
+}

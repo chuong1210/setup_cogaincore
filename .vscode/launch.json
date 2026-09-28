@@ -1,0 +1,248 @@
+{
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "⚡ [Combo] 👥 HR + 🗄️ MasterData + 🎫 ServiceDesk + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "👥 Launch HR.API",
+        "🗄️ Launch MasterData.API",
+        "🎫 Launch ServiceDesk.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "⚡ [Combo] 🏢 ERP + 👥 HR + 🗄️ MasterData + 🎫 ServiceDesk + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "🏢 Launch ERP.API",
+        "👥 Launch HR.API",
+        "🗄️ Launch MasterData.API",
+        "🎫 Launch ServiceDesk.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "✨ [Combo] 👥 HR + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "👥 Launch HR.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "✨ [Combo] 🗄️ MasterData + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "🗄️ Launch MasterData.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "✨ [Combo] 🎫 ServiceDesk + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "🎫 Launch ServiceDesk.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "✨ [Combo] 📄 BusinessDoc + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "📄 Launch BusinessDocument.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "✨ [Combo] 🔄 WorkFlow + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "🔄 Launch WorkFlow.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "✨ [Combo] 🤝 CRM + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "🤝 Launch CRM.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "✨ [Combo] 🏢 ERP + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "🏢 Launch ERP.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "⚡ [Combo] 👥 HR + 🗄️ MasterData + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "👥 Launch HR.API",
+        "🗄️ Launch MasterData.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "⚡ [Combo] 🗄️ MasterData + 🎫 ServiceDesk + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "🗄️ Launch MasterData.API",
+        "🎫 Launch ServiceDesk.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "⚡ [Combo] 📄 BusinessDoc + 🔄 WorkFlow + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "📄 Launch BusinessDocument.API",
+        "🔄 Launch WorkFlow.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "⚡ [Combo] 📄 BusinessDoc + 🔄 WorkFlow + 🗄️ MasterData + 🌐 Ocelot",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "📄 Launch BusinessDocument.API",
+        "🔄 Launch WorkFlow.API",
+        "🗄️ Launch MasterData.API"
+      ],
+      "stopAll": true
+    },
+    {
+      "name": "🚀 [Combo] FULL Backend (7 Services + 🌐 Ocelot)",
+      "configurations": [
+        "🌐 Launch OcelotApiGw",
+        "👥 Launch HR.API",
+        "🗄️ Launch MasterData.API",
+        "🎫 Launch ServiceDesk.API",
+        "📄 Launch BusinessDocument.API",
+        "🔄 Launch WorkFlow.API",
+        "🤝 Launch CRM.API",
+        "🏢 Launch ERP.API"
+      ],
+      "stopAll": true
+    }
+  ],
+  "configurations": [
+    {
+      "name": "🌐 Launch OcelotApiGw",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "🔨 build",
+      "program": "${workspaceFolder}/backend/src/ApiGateways/OcelotApiGw/bin/Debug/net8.0/OcelotApiGw.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/ApiGateways/OcelotApiGw",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_GCHeapHardLimit": "536870912"
+      }
+    },
+    {
+      "name": "👥 Launch HR.API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "🔨 build",
+      "program": "${workspaceFolder}/backend/src/Services/HR/HR.API/bin/Debug/net8.0/HR.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Services/HR/HR.API",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "🗄️ Launch MasterData.API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "🔨 build",
+      "program": "${workspaceFolder}/backend/src/Services/MasterData/MasterData.API/bin/Debug/net8.0/MasterData.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Services/MasterData/MasterData.API",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": "🎫 Launch ServiceDesk.API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "🔨 build",
+      "program": "${workspaceFolder}/backend/src/Services/ServiceDesk/ServiceDesk.API/bin/Debug/net8.0/ServiceDesk.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Services/ServiceDesk/ServiceDesk.API",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": "📄 Launch BusinessDocument.API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "🔨 build",
+      "program": "${workspaceFolder}/backend/src/Services/BusinessDocument/BusinessDocument.API/bin/Debug/net8.0/BusinessDocument.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Services/BusinessDocument/BusinessDocument.API",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": "🔄 Launch WorkFlow.API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "🔨 build",
+      "program": "${workspaceFolder}/backend/src/Services/WorkFlow/WorkFlow.API/bin/Debug/net8.0/WorkFlow.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Services/WorkFlow/WorkFlow.API",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": "🤝 Launch CRM.API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "🔨 build",
+      "program": "${workspaceFolder}/backend/src/Services/CRM/CRM.API/bin/Debug/net8.0/CRM.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Services/CRM/CRM.API",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": "🏢 Launch ERP.API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "🔨 build",
+      "program": "${workspaceFolder}/backend/src/Services/ERP/ERP.API/bin/Debug/net8.0/ERP.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/src/Services/ERP/ERP.API",
+      "stopAtEntry": false,
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
+      "name": "🧲 .NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}

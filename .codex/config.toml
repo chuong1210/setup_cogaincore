@@ -1,0 +1,67 @@
+# .codex/config.toml — Project-level Codex configuration for CogainCore
+# Reference: Codex CLI v0.156.0 (Blake Crosley 2026 Reference Guide)
+
+# ─── Top-Level Settings ─────────────────────────────────
+model = "gpt-5.6-sol"                  # Recommended stable fallback / "Power" setting
+model_provider = "openai"
+model_reasoning_effort = "medium"      # minimal|low|medium|high|xhigh
+model_reasoning_summary = "auto"       # auto|concise|detailed|none
+model_verbosity = "medium"
+personality = "pragmatic"
+
+sandbox_mode = "workspace-write"       # read-only|workspace-write|danger-full-access
+approval_policy = "on-request"         # on-request|never
+web_search = "live"
+
+project_root_markers = [".git", "pnpm-workspace.yaml", "backend/CogainSolution.sln"]
+project_doc_fallback_filenames = [".agents/AGENTS.md"]
+project_doc_max_bytes = 65536          # 64 KiB
+
+# ─── Planning Tools ────────────────────────────────────
+[tools.update_plan]
+enabled = true
+
+# ─── Sandbox Workspace Write ───────────────────────────
+[sandbox_workspace_write]
+writable_roots = []                    # Additional writable paths outside workspace
+network_access = false                 # Block outbound network by default in sandbox
+exclude_slash_tmp = false
+exclude_tmpdir_env_var = false
+
+# ─── Shell Environment Policy ──────────────────────────
+[shell_environment_policy]
+inherit = "all"
+ignore_default_excludes = false
+exclude = [
+  "*KEY*",
+  "*SECRET*",
+  "*TOKEN*",
+  "*PASSWORD*",
+  "*AUTH*",
+  "DATABASE_URL",
+  "CONNECTION_STRING"
+]
+
+# ─── History & Tool Output Limits ──────────────────────
+[history]
+persistence = "save-all"
+
+# ─── TUI Settings ──────────────────────────────────────
+[tui]
+animations = true
+show_tooltips = true
+alternate_screen = "auto"
+status_line = ["model", "context-remaining", "git-branch"]
+
+# ─── Feature Flags ─────────────────────────────────────
+[features]
+shell_tool = true
+unified_exec = true
+shell_snapshot = true
+enable_request_compression = true
+fast_mode = true
+goals = true
+hooks = true
+plugins = true
+prevent_idle_sleep = true
+terminal_resize_reflow = true

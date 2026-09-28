@@ -1,0 +1,18 @@
+{
+  "description": "Lifecycle hooks configuration for CogainCore in Codex CLI",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -Command \"$cmd = [Console]::In.ReadToEnd(); if ($cmd -match 'dotnet\\s+ef\\s+(migrations\\s+add|database\\s+update)') { Write-Error 'CRITICAL: Automatic EF migrations are strictly prohibited in CogainCore. Please ask the developer to execute database migrations manually.'; exit 1 }\"",
+            "statusMessage": "Enforcing CogainCore EF migration safety policy",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,511 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "env": {
+      "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+    }
+  },
+  "tasks": [
+    {
+      "label": "🔨 build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/backend/CogainSolution.sln",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "build",
+      "dependsOn": "🔨 build",
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "🔨 build 🌐 OcelotApiGw",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/backend/src/ApiGateways/OcelotApiGw/OcelotApiGw.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "🔨 build 👥 HR.API",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/backend/src/Services/HR/HR.API/HR.API.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "🔨 build 🗄️ MasterData.API",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/backend/src/Services/MasterData/MasterData.API/MasterData.API.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "🔨 build 🎫 ServiceDesk.API",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/backend/src/Services/ServiceDesk/ServiceDesk.API/ServiceDesk.API.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "🔨 build 📄 BusinessDocument.API",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/backend/src/Services/BusinessDocument/BusinessDocument.API/BusinessDocument.API.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "🔨 build 🔄 WorkFlow.API",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/backend/src/Services/WorkFlow/WorkFlow.API/WorkFlow.API.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "🔨 build 🤝 CRM.API",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/backend/src/Services/CRM/CRM.API/CRM.API.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "🔨 build 🏢 ERP.API",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/backend/src/Services/ERP/ERP.API/ERP.API.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "📦 publish 👥 HR.API",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "publish",
+        "${workspaceFolder}/backend/src/Services/HR/HR.API/HR.API.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "🌐 Run OcelotApiGw",
+      "type": "shell",
+      "command": "dotnet run",
+      "options": {
+        "cwd": "${workspaceFolder}/backend/src/ApiGateways/OcelotApiGw",
+        "env": {
+          "DOTNET_GCHeapHardLimit": "536870912",
+          "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "👥 Watch HR.API",
+      "type": "shell",
+      "command": "dotnet watch run",
+      "options": {
+        "cwd": "${workspaceFolder}/backend/src/Services/HR/HR.API",
+        "env": {
+          "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🗄️ Watch MasterData.API",
+      "type": "shell",
+      "command": "dotnet watch run",
+      "options": {
+        "cwd": "${workspaceFolder}/backend/src/Services/MasterData/MasterData.API",
+        "env": {
+          "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🎫 Watch ServiceDesk.API",
+      "type": "shell",
+      "command": "dotnet watch run",
+      "options": {
+        "cwd": "${workspaceFolder}/backend/src/Services/ServiceDesk/ServiceDesk.API",
+        "env": {
+          "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "📄 Watch BusinessDocument.API",
+      "type": "shell",
+      "command": "dotnet watch run",
+      "options": {
+        "cwd": "${workspaceFolder}/backend/src/Services/BusinessDocument/BusinessDocument.API",
+        "env": {
+          "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🔄 Watch WorkFlow.API",
+      "type": "shell",
+      "command": "dotnet watch run",
+      "options": {
+        "cwd": "${workspaceFolder}/backend/src/Services/WorkFlow/WorkFlow.API",
+        "env": {
+          "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🤝 Watch CRM.API",
+      "type": "shell",
+      "command": "dotnet watch run",
+      "options": {
+        "cwd": "${workspaceFolder}/backend/src/Services/CRM/CRM.API",
+        "env": {
+          "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🏢 Watch ERP.API",
+      "type": "shell",
+      "command": "dotnet watch run",
+      "options": {
+        "cwd": "${workspaceFolder}/backend/src/Services/ERP/ERP.API",
+        "env": {
+          "DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER": "1"
+        }
+      },
+      "isBackground": true,
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "⚡ [Watch] 👥 HR + 🗄️ MasterData + 🎫 ServiceDesk + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "👥 Watch HR.API",
+        "🗄️ Watch MasterData.API",
+        "🎫 Watch ServiceDesk.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "⚡ [Watch] 🏢 ERP + 👥 HR + 🗄️ MasterData + 🎫 ServiceDesk + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "🏢 Watch ERP.API",
+        "👥 Watch HR.API",
+        "🗄️ Watch MasterData.API",
+        "🎫 Watch ServiceDesk.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "✨ [Watch] 👥 HR + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "👥 Watch HR.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "✨ [Watch] 🗄️ MasterData + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "🗄️ Watch MasterData.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "✨ [Watch] 🎫 ServiceDesk + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "🎫 Watch ServiceDesk.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "✨ [Watch] 📄 BusinessDoc + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "📄 Watch BusinessDocument.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "✨ [Watch] 🔄 WorkFlow + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "🔄 Watch WorkFlow.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "✨ [Watch] 🤝 CRM + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "🤝 Watch CRM.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "✨ [Watch] 🏢 ERP + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "🏢 Watch ERP.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "⚡ [Watch] 👥 HR + 🗄️ MasterData + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "👥 Watch HR.API",
+        "🗄️ Watch MasterData.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "⚡ [Watch] 🗄️ MasterData + 🎫 ServiceDesk + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "🗄️ Watch MasterData.API",
+        "🎫 Watch ServiceDesk.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "⚡ [Watch] 📄 BusinessDoc + 🔄 WorkFlow + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "📄 Watch BusinessDocument.API",
+        "🔄 Watch WorkFlow.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "⚡ [Watch] 📄 BusinessDoc + 🔄 WorkFlow + 🗄️ MasterData + 🌐 Ocelot",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "📄 Watch BusinessDocument.API",
+        "🔄 Watch WorkFlow.API",
+        "🗄️ Watch MasterData.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "🚀 [Watch] FULL Backend (7 Services + 🌐 Ocelot)",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "🌐 Run OcelotApiGw",
+        "👥 Watch HR.API",
+        "🗄️ Watch MasterData.API",
+        "🎫 Watch ServiceDesk.API",
+        "📄 Watch BusinessDocument.API",
+        "🔄 Watch WorkFlow.API",
+        "🤝 Watch CRM.API",
+        "🏢 Watch ERP.API"
+      ],
+      "type": "shell",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      },
+      "isBackground": true
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# .codex/ci.config.toml — Non-interactive headless profile for CI/CD automation and scripts
+# Activated via: codex --profile ci
+
+model = "gpt-5.6-luna"
+model_reasoning_effort = "low"
+approval_policy = "never"
+sandbox_mode = "workspace-write"
