@@ -1,0 +1,41 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Common.Logging -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Common.Logging\bin\Debug\net8.0\Common.Logging.dll
+  Shared -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Shared\bin\Debug\net8.0\Shared.dll
+  Contracts -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Contracts\bin\Debug\net8.0\Contracts.dll
+  Infrastructure -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Infrastructure\bin\Debug\net8.0\Infrastructure.dll
+  CRM.Data -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\CRM\CRM.Data\bin\Debug\net8.0\CRM.Data.dll
+  WorkFlow.Data -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\WorkFlow\WorkFlow.Data\bin\Debug\net8.0\WorkFlow.Data.dll
+  WorkFlow.Repositories -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\WorkFlow\WorkFlow.Repositories\bin\Debug\net8.0\WorkFlow.Repositories.dll
+  BusinessDocument.Data -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\BusinessDocument\BusinessDocument.Data\bin\Debug\net8.0\BusinessDocument.Data.dll
+  HR.Data -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\HR\HR.Data\bin\Debug\net8.0\HR.Data.dll
+  ServiceDesk.Data -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Data\bin\Debug\net8.0\ServiceDesk.Data.dll
+  ERP.Data -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ERP\ERP.Data\bin\Debug\net8.0\ERP.Data.dll
+  ServiceDesk.Repositories -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Repositories\bin\Debug\net8.0\ServiceDesk.Repositories.dll
+  OcelotApiGw -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\ApiGateways\OcelotApiGw\bin\Debug\net8.0\OcelotApiGw.dll
+  WorkFlow.Services -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\WorkFlow\WorkFlow.Services\bin\Debug\net8.0\WorkFlow.Services.dll
+  CRM.Repositories -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\CRM\CRM.Repositories\bin\Debug\net8.0\CRM.Repositories.dll
+  HR.Repositories -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\HR\HR.Repositories\bin\Debug\net8.0\HR.Repositories.dll
+  ServiceDesk.Services -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Services\bin\Debug\net8.0\ServiceDesk.Services.dll
+  BusinessDocument.Repositories -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\BusinessDocument\BusinessDocument.Repositories\bin\Debug\net8.0\BusinessDocument.Repositories.dll
+  BusinessDocument.Services -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\BusinessDocument\BusinessDocument.Services\bin\Debug\net8.0\BusinessDocument.Services.dll
+  MasterData.Data -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\MasterData\MasterData.Data\bin\Debug\net8.0\MasterData.Data.dll
+  HR.Services -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\HR\HR.Services\bin\Debug\net8.0\HR.Services.dll
+  CRM.Services -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\CRM\CRM.Services\bin\Debug\net8.0\CRM.Services.dll
+  ERP.Repositories -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ERP\ERP.Repositories\bin\Debug\net8.0\ERP.Repositories.dll
+  ServiceDesk.API -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.API\bin\Debug\net8.0\ServiceDesk.API.dll
+  ERP.Services -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ERP\ERP.Services\bin\Debug\net8.0\ERP.Services.dll
+  ERP.API -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ERP\ERP.API\bin\Debug\net8.0\ERP.API.dll
+  WorkFlow.API -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\WorkFlow\WorkFlow.API\bin\Debug\net8.0\WorkFlow.API.dll
+  MasterData.Repositories -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\MasterData\MasterData.Repositories\bin\Debug\net8.0\MasterData.Repositories.dll
+  CRM.API -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\CRM\CRM.API\bin\Debug\net8.0\CRM.API.dll
+  BusinessDocument.API -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\BusinessDocument\BusinessDocument.API\bin\Debug\net8.0\BusinessDocument.API.dll
+  HR.API -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\HR\HR.API\bin\Debug\net8.0\HR.API.dll
+  MasterData.Services -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\MasterData\MasterData.Services\bin\Debug\net8.0\MasterData.Services.dll
+  MasterData.API -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\MasterData\MasterData.API\bin\Debug\net8.0\MasterData.API.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:47.88

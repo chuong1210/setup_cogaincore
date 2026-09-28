@@ -1,0 +1,6 @@
+{
+  "summary": "Kế hoạch hoàn thiện đồng bộ toàn diện InstallationAcceptanceMinute theo AcceptanceMinute:\n1. Backend: Bổ sung cấu hình EF Core (Unique Index, MaxLength), kiểm tra SnapshotPolicy và Report endpoints nếu cần.\n2. Frontend i18n: Bổ sung toàn bộ translation keys trong installationAcceptanceMinute.json.\n3. Frontend UI & Tuân thủ quy chuẩn AGENTS.md:\n   - Loại bỏ hoàn toàn raw HTML `<input type=\"radio\">` trong index.tsx và thay thế bằng `Checkbox` của `@shared/ui`.\n   - Loại bỏ gọi trực tiếp `employeeService` / inline `useQuery` trong `qc-ready-dialog.tsx`, thay thế bằng custom hook `useEmployee`.\n   - Xóa bỏ 100% hardcoded text strings trong `index.tsx`, `other-role-confirm-dialog.tsx`, `qc-ready-dialog.tsx`, `qc-confirm-dialog.tsx`, `qc-result-dialog.tsx`, `acceptance-minute-detail-table.tsx` bằng `t('installationAcceptanceMinute:...')`.\n   - Chuẩn hóa cột thao tác bằng `ActionStack` trong `index.tsx`.\n   - Hoàn thiện mapping đầy đủ các trường (BOM, BTP, hệ số, đơn giá) khi chọn Lệnh lắp đặt trong `acceptance-minute-form.tsx`.",
+  "updatedAt": "2026-09-18T05:53:04.853194Z",
+  "requestFeedback": true,
+  "userFacing": true
+}

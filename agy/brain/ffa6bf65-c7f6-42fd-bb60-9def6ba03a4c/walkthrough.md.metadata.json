@@ -1,0 +1,5 @@
+{
+  "summary": "Walkthrough documenting the fixes for QC evaluation numeric validation error ('Invalid input: expected string, received number') and displaying all 16 columns unconditionally in installation acceptance minute detail table and outer expandable table.",
+  "updatedAt": "2026-09-19T04:08:31.020380400Z",
+  "userFacing": true
+}

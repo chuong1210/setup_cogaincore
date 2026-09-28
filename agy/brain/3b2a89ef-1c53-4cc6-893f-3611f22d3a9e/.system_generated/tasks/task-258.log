@@ -1,0 +1,7 @@
+Successfully scheduled one-shot timer.
+Expected to fire at: 2026-09-22T11:30:23+07:00
+Prompt: Build finished or timed out
+Early Termination: 3b2a89ef-1c53-4cc6-893f-3611f22d3a9e/task-231
+
+[2026-09-22T11:30:18+07:00] Still waiting. Remaining time: 5s
+[2026-09-22T11:30:20+07:00] Timer cancelled: agent received a message during wait.

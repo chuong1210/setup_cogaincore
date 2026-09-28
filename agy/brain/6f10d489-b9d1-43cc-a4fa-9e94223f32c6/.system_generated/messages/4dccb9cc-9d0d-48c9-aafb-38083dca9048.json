@@ -1,0 +1,1 @@
+{"id":"4dccb9cc-9d0d-48c9-aafb-38083dca9048","recipient":"6f10d489-b9d1-43cc-a4fa-9e94223f32c6","sender":"6f10d489-b9d1-43cc-a4fa-9e94223f32c6/task-660","priority":"MESSAGE_PRIORITY_HIGH","timestamp":"2026-09-24T08:44:45.302822700Z","renderDetails":{"messageTitle":"Liveness timer cho lint task: Timer has expired"},"content":"Kiểm tra kết quả linter của task-658"}

@@ -1,0 +1,7 @@
+Successfully scheduled one-shot timer.
+Expected to fire at: 2026-09-25T13:23:41+07:00
+Prompt: Wait for tsc completion
+Early Termination: 853df1ac-ae53-43f8-9d5e-bf7edddb7a29/task-2580
+
+[2026-09-25T13:23:31+07:00] Still waiting. Remaining time: 10s
+[2026-09-25T13:23:41+07:00] Timer fired.

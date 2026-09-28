@@ -1,0 +1,10 @@
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\hrm\src\routes\_app\employee-adjustment\index.tsx
+  141:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  230:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 2 problems (2 errors, 0 warnings)
+
+undefined
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\hrm:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: eslint src/routes/_app/employee-adjustment/index.tsx

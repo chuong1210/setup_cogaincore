@@ -1,0 +1,6 @@
+{
+  "summary": "Kế hoạch tạo script shell (ef.sh) và PowerShell (ef.ps1) hỗ trợ alias và sinh câu lệnh dotnet ef migration nhanh cho tất cả các microservices trong cogain-core.",
+  "updatedAt": "2026-09-19T03:02:19.573563700Z",
+  "requestFeedback": true,
+  "userFacing": true
+}

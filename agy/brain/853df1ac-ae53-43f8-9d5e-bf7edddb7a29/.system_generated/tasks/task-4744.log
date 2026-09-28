@@ -1,0 +1,55 @@
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\installation-management\installation-acceptance-minute\index.tsx
+   200:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   213:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   227:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   268:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   311:77  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1095:30  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1108:30  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1121:30  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\installation-management\installation-order\-components\installation-order-detail-table.tsx
+  317:16  error  React Hook "useMemo" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\installation-management\installation-plan\$id\index.tsx
+  410:14  error  Parsing error: Identifier expected
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\delivery-packaging\-components\delivery-packaging-detail-table.tsx
+  414:16  error  React Hook "useMemo" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\delivery-packaging\index.tsx
+   829:13  error  Empty block statement                     no-empty
+   998:67  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   999:61  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1027:78  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\delivery-plan\$id\index.tsx
+  113:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  119:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  354:32  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\finished-goods-packing\index.tsx
+  142:12  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  157:44  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  169:44  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  251:12  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  257:49  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  267:40  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  349:62  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  649:57  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  728:5   warning  React Hook useMemo has a missing dependency: 'handleViewDetail'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  803:44  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  804:44  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  942:35  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\mechanical-packing-list\$id\detail\index.tsx
+  14:8  error  'FormTabItemConfig' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\mechanical-packing-list\index.tsx
+  675:5  warning  React Hook useMemo has missing dependencies: 'handleViewDetail' and 'productionOrderMap'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+✖ 32 problems (30 errors, 2 warnings)
+
+undefined
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: eslint src/routes/_app/logistic/finished-goods-packing/index.tsx src/routes/_app/logistic/finished-goods-delivery-packing/index.tsx src/routes/_app/logistic/site-delivery/index.tsx src/routes/_app/installation-management/installation-acceptance-minute/index.tsx src/routes/_app/logistic/mechanical-packing-list/index.tsx src/routes/_app/logistic/mechanical-packing-list/$id/detail/index.tsx src/routes/_app/logistic/delivery-packaging/index.tsx src/routes/_app/logistic/delivery-packaging/-components/delivery-packaging-detail-table.tsx src/routes/_app/installation-management/installation-order/index.tsx src/routes/_app/installation-management/installation-order/-components/installation-order-detail-table.tsx src/routes/_app/installation-management/installation-plan/$id/index.tsx src/routes/_app/logistic/delivery-plan/$id/index.tsx

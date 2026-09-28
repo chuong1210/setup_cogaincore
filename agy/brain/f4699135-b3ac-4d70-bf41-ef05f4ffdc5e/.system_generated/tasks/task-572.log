@@ -1,0 +1,19 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Common.Logging -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Common.Logging\bin\Debug\net8.0\Common.Logging.dll
+  Shared -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Shared\bin\Debug\net8.0\Shared.dll
+  Contracts -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Contracts\bin\Debug\net8.0\Contracts.dll
+  Infrastructure -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Infrastructure\bin\Debug\net8.0\Infrastructure.dll
+C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Data\Persistence\Configurations\Tickets\TicketResolutionReferenceConfiguration.cs(15,31): warning CS0618: 'TicketResolution.References' is obsolete: 'ticket version 2 đổi mới' [C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Data\ServiceDesk.Data.csproj]
+  ServiceDesk.Data -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Data\bin\Debug\net8.0\ServiceDesk.Data.dll
+  ServiceDesk.Repositories -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Repositories\bin\Debug\net8.0\ServiceDesk.Repositories.dll
+C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Services\Implement\PackingList\MechanicalPackingLists\MechanicalPackingListService.cs(449,50): error CS1026: ) expected [C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Services\ServiceDesk.Services.csproj]
+
+Build FAILED.
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Data\Persistence\Configurations\Tickets\TicketResolutionReferenceConfiguration.cs(15,31): warning CS0618: 'TicketResolution.References' is obsolete: 'ticket version 2 đổi mới' [C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Data\ServiceDesk.Data.csproj]
+C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Services\Implement\PackingList\MechanicalPackingLists\MechanicalPackingListService.cs(449,50): error CS1026: ) expected [C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\ServiceDesk\ServiceDesk.Services\ServiceDesk.Services.csproj]
+    1 Warning(s)
+    1 Error(s)
+
+Time Elapsed 00:01:14.09

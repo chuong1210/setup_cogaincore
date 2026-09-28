@@ -1,0 +1,12 @@
+
+> @cogain/bizdoc@0.0.0 build C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc
+> cross-env NODE_OPTIONS=--max-old-space-size=4096 tsc -b && cross-env NODE_OPTIONS=--max-old-space-size=4096 vite build
+
+src/routes/_app/logistic/finished-goods-delivery-packing/index.tsx(512,35): error TS2339: Property 'icon' does not exist on type 'IFlatItem'.
+src/routes/_app/logistic/finished-goods-delivery-packing/index.tsx(513,68): error TS2339: Property 'color' does not exist on type 'IFlatItem'.
+src/routes/_app/logistic/finished-goods-delivery-packing/index.tsx(748,68): error TS2339: Property 'data' does not exist on type 'never'.
+src/routes/_app/logistic/finished-goods-packing/_components/finished-goods-packing-form.tsx(167,10): error TS2451: Cannot redeclare block-scoped variable 'isIndependent'.
+src/routes/_app/logistic/finished-goods-packing/_components/finished-goods-packing-form.tsx(167,25): error TS2451: Cannot redeclare block-scoped variable 'setIsIndependent'.
+src/routes/_app/logistic/finished-goods-packing/_components/finished-goods-packing-form.tsx(416,10): error TS2451: Cannot redeclare block-scoped variable 'isIndependent'.
+src/routes/_app/logistic/finished-goods-packing/_components/finished-goods-packing-form.tsx(416,25): error TS2451: Cannot redeclare block-scoped variable 'setIsIndependent'.
+ ELIFECYCLE  Command failed with exit code 2.

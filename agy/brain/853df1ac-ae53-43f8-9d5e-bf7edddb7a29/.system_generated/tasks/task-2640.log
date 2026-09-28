@@ -1,0 +1,22 @@
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\finished-goods-packing\_components\finished-goods-packing-form.tsx
+  248:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  249:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  273:59  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  293:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  294:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  302:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  341:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  469:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  477:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  478:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  701:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  716:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  717:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  725:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  725:71  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  728:31  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  728:77  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 17 problems (17 errors, 0 warnings)
+

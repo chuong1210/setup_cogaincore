@@ -1,0 +1,16 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Common.Logging -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Common.Logging\bin\Debug\net8.0\Common.Logging.dll
+  Shared -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Shared\bin\Debug\net8.0\Shared.dll
+  Contracts -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Contracts\bin\Debug\net8.0\Contracts.dll
+  Infrastructure -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\BuildingBlocks\Infrastructure\bin\Debug\net8.0\Infrastructure.dll
+  MasterData.Data -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\MasterData\MasterData.Data\bin\Debug\net8.0\MasterData.Data.dll
+  MasterData.Repositories -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\MasterData\MasterData.Repositories\bin\Debug\net8.0\MasterData.Repositories.dll
+  MasterData.Services -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\MasterData\MasterData.Services\bin\Debug\net8.0\MasterData.Services.dll
+  MasterData.API -> C:\Users\Admin\Desktop\CogainCore\cogain-core\backend\src\Services\MasterData\MasterData.API\bin\Debug\net8.0\MasterData.API.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:18.68

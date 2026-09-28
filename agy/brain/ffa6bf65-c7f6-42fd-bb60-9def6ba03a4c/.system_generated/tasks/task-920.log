@@ -1,0 +1,7 @@
+
+> @cogain/bizdoc@0.0.0 build C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc
+> cross-env NODE_OPTIONS=--max-old-space-size=4096 tsc -b && vite build
+
+src/routes/_app/installation-management/installation-order/-components/installation-detail-tab/packing-selection-dialog.tsx(251,17): error TS2322: Type 'boolean | "" | undefined' is not assignable to type 'boolean | undefined'.
+  Type '""' is not assignable to type 'boolean | undefined'.
+ ELIFECYCLE  Command failed with exit code 2.

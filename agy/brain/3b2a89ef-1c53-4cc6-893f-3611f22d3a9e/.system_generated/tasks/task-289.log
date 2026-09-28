@@ -1,0 +1,6 @@
+Successfully scheduled one-shot timer.
+Expected to fire at: 2026-09-22T11:31:55+07:00
+Prompt: Check dotnet build completion
+Early Termination: 3b2a89ef-1c53-4cc6-893f-3611f22d3a9e/task-287
+
+[2026-09-22T11:31:42+07:00] Timer cancelled: agent received a message during wait.

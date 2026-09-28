@@ -1,0 +1,5 @@
+{
+  "summary": "Phân tích chuyên sâu về hệ thống Lập kế hoạch nhu cầu nguyên vật liệu (MRP) và Safety Stock trong CogainCore. Báo cáo này đi sâu vào logic tính toán, các entity chính, và cách hệ thống tự động hóa việc đưa ra quyết định mua hàng/sản xuất.",
+  "updatedAt": "2026-09-22T07:24:32.960879Z",
+  "userFacing": true
+}

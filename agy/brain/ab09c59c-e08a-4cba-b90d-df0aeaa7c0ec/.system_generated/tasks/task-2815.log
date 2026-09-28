@@ -1,0 +1,11 @@
+
+> @cogain/bizdoc@0.0.0 build
+> cross-env NODE_OPTIONS=--max-old-space-size=4096 tsc -b && vite build
+
+src/routes/_app/installation-management/installation-order/-components/installation-detail-tab/packing-detail-view-dialog.tsx(56,25): error TS2339: Property 'actualWeight' does not exist on type 'IMechanicalPackingListDetail'.
+src/routes/_app/installation-management/installation-order/-components/installation-detail-tab/packing-detail-view-dialog.tsx(60,28): error TS2339: Property 'uomCodeSnapshot' does not exist on type 'IMechanicalPackingListDetail'.
+src/routes/_app/installation-management/installation-order/-components/installation-detail-tab/packing-detail-view-dialog.tsx(61,28): error TS2339: Property 'uomNameSnapshot' does not exist on type 'IMechanicalPackingListDetail'.
+src/routes/_app/installation-management/installation-order/-components/installation-detail-tab/packing-detail-view-dialog.tsx(63,41): error TS2339: Property 'semiFinishedGoodCodeSnapshot' does not exist on type 'IMechanicalPackingListDetail'.
+src/routes/_app/installation-management/installation-order/-components/installation-detail-tab/packing-detail-view-dialog.tsx(64,41): error TS2339: Property 'semiFinishedGoodNameSnapshot' does not exist on type 'IMechanicalPackingListDetail'.
+src/routes/_app/logistic/customs-declaration/-components/customs-declaration-detail-table.tsx(582,21): error TS2322: Type '{ entityCode: string; apiBasePath: string; valueField: string; placeholder: string; value: string; onValueChange: (val: any) => void; className: string; filters: FilterDefinition[]; }' is not assignable to type 'IntrinsicAttributes & LazyComboboxWithFiltersOwnProps & Omit<ComboboxWithFiltersProps<unknown>, OmittedProps>'.
+  Property 'valueField' does not exist on type 'IntrinsicAttributes & LazyComboboxWithFiltersOwnProps & Omit<ComboboxWithFiltersProps<unknown>, OmittedProps>'.

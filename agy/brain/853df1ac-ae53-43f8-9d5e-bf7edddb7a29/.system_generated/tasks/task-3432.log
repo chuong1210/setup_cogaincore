@@ -1,0 +1,6 @@
+Successfully scheduled one-shot timer.
+Expected to fire at: 2026-09-25T15:38:32+07:00
+Prompt: Wait for dotnet build
+Early Termination: 853df1ac-ae53-43f8-9d5e-bf7edddb7a29/task-3415
+
+[2026-09-25T15:38:32+07:00] Timer fired.

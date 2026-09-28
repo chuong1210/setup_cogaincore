@@ -1,0 +1,6 @@
+
+> @cogain/bizdoc@0.0.0 build C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc
+> cross-env NODE_OPTIONS=--max-old-space-size=4096 tsc -b && cross-env NODE_OPTIONS=--max-old-space-size=4096 vite build
+
+src/routes/_app/sale/pre-sales-survey/-components/form.tsx(284,7): error TS1005: ')' expected.
+ ELIFECYCLE  Command failed with exit code 2.

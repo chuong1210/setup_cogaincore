@@ -1,0 +1,63 @@
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\finished-goods-packing\_components\finished-goods-packing-form.tsx
+  248:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  249:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  273:59  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  290:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  291:50  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  299:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  338:28  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  466:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  474:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  475:36  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  694:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  709:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  710:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  718:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  718:71  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  721:31  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  721:77  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\finished-goods-packing\_components\packing-form-detail-table.tsx
+   20:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components             react-refresh/only-export-components
+   89:23  error    Unexpected any. Specify a different type                                                                                                   @typescript-eslint/no-explicit-any
+  173:59  error    Unexpected any. Specify a different type                                                                                                   @typescript-eslint/no-explicit-any
+  179:3   error    Definition for rule 'react/no-unstable-nested-components' was not found                                                                    react/no-unstable-nested-components
+  976:6   warning  React Hook useMemo has missing dependencies: 'getDetailError' and 'getSelectedDetail'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\finished-goods-packing\_hooks\use-finished-goods-packing.tsx
+   81:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  147:26  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  200:30  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  210:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\finished-goods-packing\_hooks\use-packing-codes.ts
+  12:85  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  31:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  37:34  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  38:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  39:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  40:53  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  41:49  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  42:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  46:41  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc\src\routes\_app\logistic\finished-goods-packing\index.tsx
+  139:12  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  154:44  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  166:44  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  248:12  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  254:49  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  264:40  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  342:62  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  642:57  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  721:5   warning  React Hook useMemo has a missing dependency: 'handleViewDetail'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  796:44  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  797:44  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+  935:35  error    Unexpected any. Specify a different type                                                                           @typescript-eslint/no-explicit-any
+
+✖ 47 problems (44 errors, 3 warnings)
+
+undefined
+C:\Users\Admin\Desktop\CogainCore\cogain-core\frontend\bizdoc:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: eslint src/routes/_app/logistic/finished-goods-packing/
