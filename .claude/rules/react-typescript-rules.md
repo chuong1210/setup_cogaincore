@@ -11,6 +11,8 @@ description: Apply this rule when working on frontend UI, React components, and 
 
 These are internal mandatory rules and best practices for AI agents operating on Frontend applications within the `cogain-core` project (`interactive`, `hrm`, `crm`, `erp`, `bizdoc`...).
 
+---
+
 ## 1. Core Tech Stack
 
 - **Framework:** React 19 + TypeScript (Strict Mode).
@@ -30,12 +32,16 @@ These are internal mandatory rules and best practices for AI agents operating on
   - Use **`SortableWrapTable`** (from `@shared/components/sortable-wrap-table`) whenever tables require drag-and-drop row reordering.
   - Use **`CustomTable`** (from `@shared/components/custom-table`) paired with `useTableChange` for primary list screens supporting server-side pagination and filtering.
 
+---
+
 ## 2. Naming Conventions
 
 - **Files & Directories:** Must use `kebab-case` (e.g., `asset-type-form.tsx`, `use-asset-type.tsx`, `index.tsx`). Local private files and folders must begin with an underscore (e.g., `_components`, `_hooks`).
 - **Components:** Must use `PascalCase` (e.g., `AssetTypeForm`, `CustomTable`).
 - **Interfaces & Types:** Must use prefix `I` or `T` (e.g., `IAssetType`, `TUserStatus`).
 - **Hooks:** Must begin with `use` in camelCase (e.g., `useTableChange`, `useAssetType`).
+
+---
 
 ## 3. Component Architecture & Separation of Concerns
 
@@ -142,25 +148,8 @@ These are internal mandatory rules and best practices for AI agents operating on
   ```
 - **Import Template**: Call `getTemplateImport.mutateAsync()` -> then download via `useFile().downloadFile(...)` -> display success toast.
 
-### 3.3. Smart / Presentational Components & Service Layer
-- **Never Write Raw Axios Calls:** All CRUD API operations must route through `createBaseService` from `@shared/services/base-service` to leverage centralized handling. Do not disperse ad-hoc `axios.get` or `axios.post` calls across UI components.
-- **Form Presentation for Request Tickets ("Phiếu"):**
-  - **MANDATORY SLIDEOUT FORMAT:** Form components for business tickets/documents must **NEVER be basic modal dialogs**. They must always be implemented as a **Slideout Sheet** (`Sheet` from `@shared/ui` with `side="right"` and responsive width: `className="sm:max-w-[75%] md:max-w-[70%] w-full flex flex-col p-0 gap-0"`).
-  - Use `SheetHeader`, `SheetTitle` with `ResourceVersionBadge`, `flex-1 overflow-y-auto px-6` for scrollable content, and `SheetFooter` for action buttons.
-
-### 3.4. Strict Ban on Raw HTML Form Controls (Mandatory Shared Component Usage)
+### 3.3. Strict Ban on Raw HTML Form Controls (Mandatory Shared Component Usage)
 - **NEVER** use native HTML form controls: `<select>`, `<option>`, `<input type="date">`, `<input type="time">`, `<input type="number">`, or raw `<table>/<tr>/<td>`.
-- **STRICTLY FORBIDDEN ANTI-PATTERNS:**
-  ```tsx
-  // ❌ FORBIDDEN: Raw HTML select and options
-  <select value={status} onChange={(e) => setStatus(e.target.value)}>
-    <option value="all">Tất cả</option>
-    <option value="1">Đang xử lý</option>
-  </select>
-
-  // ❌ FORBIDDEN: Raw HTML date input
-  <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-  ```
 - **MANDATORY DESIGN SYSTEM COMPONENTS:**
   - **Dropdowns / Selects:**
     - Single Select: `CustomSelect` (from `@shared/components/custom/custom-select`)
@@ -179,119 +168,298 @@ These are internal mandatory rules and best practices for AI agents operating on
     - Sortable / Reorderable Lists: `SortableWrapTable` (from `@shared/components/sortable-wrap-table`)
     - Server Paged Grids: `CustomTable` (from `@shared/components/custom-table`)
 
-### 3.5. Ticket List Page Filter Standards (`FilterPopover`)
-- **NEVER** place raw inline `<select>` elements or ad-hoc filter toolbars directly in the page header.
-- **MANDATORY**: Build a dedicated `<[Ticket]FilterPopover>` component using `FilterPopoverLayout` (from `@shared/components`) or `Popover` (from `@shared/ui`).
-- **Trigger Button**: `Button variant="outline"` displaying `Filter` icon, label "Lọc", and an active badge when `filterCount > 0`.
-- **Content**: Cleanly structured domain fields (`ProjectCombobox`, `CustomSelect` for status/types with icons, numeric/date ranges) with dedicated Reset and Apply buttons (referencing `AcceptanceMinuteFilterPopover`).
+---
 
-### 3.6. Mandatory Child & Detail Table Search & Filter Popover
-- **EVERY** child and detail table MUST configure both search and filter via `toolbarProps` on `ResizableWrapTable`.
-- **Toolbar Configuration**:
+## 4. Business Data Table & Action Bar Standards
+
+### 4.1. 4 Mandatory Foundation Columns on Data Tables
+All business ticket list tables ("Phiếu nghiệp vụ") **MUST** render at least these 4 standard columns:
+1. **Mã phiếu**: Text link (click opens detail/drawer), sticky pinned to left edge on horizontal scroll, sorts by code string.
+2. **Trạng thái phiếu**: Status Tag/Badge styled according to Design System tokens, sorts by status code/order.
+3. **Ngày tạo**: Combined 2-line cell (Multi-line cell):
+   - Line 1: `[Calendar Icon]` + `DD/MM/YYYY HH:mm`
+   - Line 2: `[User Icon]` + `Username / Mã nhân viên tạo`
+   - Sort: timestamp of `created_at`.
+4. **Ngày cập nhật**: Combined 2-line cell (Multi-line cell):
+   - Line 1: `[Calendar Icon]` + `DD/MM/YYYY HH:mm`
+   - Line 2: `[User Icon]` + `Username / Mã nhân viên cập nhật`
+   - Sort: timestamp of `updated_at`.
+
+### 4.2. Clean Table Header & Single-Sort Mechanism
+- **Clean Header Standard**: 100% eliminate filter funnel icons, search inputs, or dropdown menus from individual column header cells. Header cells strictly consist of: `[Tên cột] + [Icon Sort]`.
+- **Sort Icons**:
+  - Default (unsorted): `⇅` (neutral muted gray).
+  - Ascending: `↑` (active highlight primary).
+  - Descending: `↓` (active highlight primary).
+  - All sortable columns MUST display the sort icon.
+- **Single-Sort Mechanism**:
+  - System applies sorting on strictly **ONE** column at a time.
+  - Click progression on the same column: Default (`⇅`) ➔ Ascending (`↑`) ➔ Descending (`↓`) ➔ Unsorted (`⇅`).
+  - Clicking sort on Column B immediately cancels sorting on Column A, resetting Column A to `⇅`.
+
+### 4.3. Top Action Bar Standards (Order & Geometry)
+The top toolbar above the Data Table must strictly adhere to the following left-to-right order:
+`[ Ô Tìm kiếm ] ──> [ Nút Bộ lọc ] ──> [ Import ] ──> [ Export ] ──> [ + Thêm mới ] ──> [ Vạch phân cách ] ──> [ ⚙ Cài đặt cột ]`
+
+- **Ô Tìm kiếm (Quick Search)**: Leftmost position, clear placeholder (e.g., "Tìm kiếm theo mã, tên..."), search icon, and `[X]` clear button.
+- **Nút Bộ lọc (Filter Button)**: Funnel icon + label "Bộ lọc" + badge showing count of active filters if `> 0` (e.g., `Bộ lọc (2)`). Opens Filter Popover.
+- **Nút Import / Export**: Secondary / Outline button. Displayed only when import/export is enabled.
+- **Nút Thêm mới (+)**: Primary button in brand accent color. Always placed before column settings.
+- **Vạch phân cách (Divider)**: Vertical line: `width: 1px`, `height: 20px`, color `#E5E5E5` (`--Colors-Border-secondary`), margin `8px` on both sides, vertically centered.
+- **Nút Cài đặt cột [⚙]**: Rightmost position, square `36px × 36px`, border `1px solid #E5E5E5`, rounded `8px-12px`, centered icon. Opens Popover with show/hide checkboxes, drag-and-drop column reordering, and reset to default button.
+- **Height Uniformity**: All inputs and buttons in the Action Bar MUST have a uniform height of **36px** (`h-9` / `height: 36px`).
+
+### 4.4. Golden Rule of Column Content Alignment
+> [!IMPORTANT]
+> **GOLDEN RULE OF COLUMN ALIGNMENT**: The Column Header and Data Cells in the Table Body **MUST SHARE THE EXACT SAME ALIGNMENT**. Never center the header while left-aligning cell content!
+
+| Data Group | Header Alignment | Body Cell Alignment | Examples | Component Configuration |
+| :--- | :--- | :--- | :--- | :--- |
+| **Text / Long Strings** | **Left (Trái)** | **Left (Trái)** | Worker name, Stage, Project, Team, Production order, Customer name, Description, Address | `CustomTable`: `meta: { align: 'left' }`<br>`ResizableWrapTable`: `align: 'left'`<br>`SortableWrapTable`: `align: 'left'` |
+| **Numbers & Currency** | **Right (Phải)** | **Right (Phải)** | Unit price, Amount, Quantity, Days, Volume, Discount | `CustomTable`: `meta: { align: 'right' }`<br>`ResizableWrapTable`: `align: 'right'`<br>`SortableWrapTable`: `align: 'right'` |
+| **Short IDs, Dates & Times** | **Center (Giữa)** | **Giữa (Center)** | Execution date, End date, Start time, End time, Created date, Updated date (`ModifierInfo`), STT, Short Code | `CustomTable`: `meta: { align: 'center' }`<br>`ResizableWrapTable`: `align: 'center'`<br>`SortableWrapTable`: `align: 'center'` |
+| **Status Badges & Actions** | **Center (Giữa)** | **Giữa (Center)** | Row selection Checkbox, Status Badges (`StatusTag`), Action buttons (Edit, Delete) | `CustomTable`: `meta: { align: 'center' }`<br>`ResizableWrapTable`: `align: 'center'`<br>`SortableWrapTable`: `align: 'center'` |
+
+```tsx
+// Column definition example for CustomTable:
+const columns: ColumnDef<IDeliveryVehicleType>[] = [
+  // 1. Checkbox: Center - Center
+  { id: 'select', meta: { align: 'center' }, ... },
+  // 2. Short ID/Code: Center - Center
+  { accessorKey: 'code', meta: { width: 150, align: 'center' }, ... },
+  // 3. Name/Text: Left - Left
+  { accessorKey: 'name', meta: { width: 250, align: 'left' }, ... },
+  // 4. Status badge: Center - Center
+  { accessorKey: 'status', meta: { width: 150, align: 'center' }, cell: ({ row }) => <StatusTag status={row.getValue('status')} /> },
+  // 5. Modified timestamp (2 lines): Center - Center
+  { id: 'lastModifiedDate', meta: { width: 180, align: 'center' }, cell: ({ row }) => <ModifierInfo ... /> },
+  // 6. Action buttons: Center - Center
+  { id: 'actions', meta: { width: 120, align: 'center' }, cell: ({ row }) => <div className="flex justify-center gap-2">...</div> },
+];
+```
+
+### 4.5. Sub-Table & Attached Tabs (Zero-Gap Rule)
+For detail tables and child material lists:
+- **Zero-Gap Rule**: The Tab bar must attach directly flush to the top edge of the Sub-Table: `margin-bottom: 0`, `gap: 0`. Tab height: 32px – 36px.
+- **Special Top-Left Border Radius**: The overall table wrapper has `border-radius: 12px`, but the **Top-Left corner MUST be 0px** (`border-top-left-radius: 0px` / `rounded-tl-none`) to seamlessly merge with the tab above.
+- **Sub-Table Header**: Min-height `44px`, background `--Colors-Background-selected-primary` (DocMag: Teal-50 `#E8F7F0`), title text dark and readable (`--Colors-Teal-900: #004024` or `--Colors-Foreground-base`), `font-weight: 600` (Semibold).
+
+---
+
+## 5. Filter Popover & State Management Standards
+
+### 5.1. Filter Popover Architecture (1:1 Mapping Rule)
+- **NEVER** place raw inline filter controls or ad-hoc select toolbars directly in the page header.
+- **MANDATORY**: Build a dedicated `<[Ticket]FilterPopover>` component using `FilterPopoverLayout` (from `@shared/components`) or `Popover` (from `@shared/ui`). *(Sole exception: Interactive/Inter module displays a filter row below Header).*
+- **Anchor**: Anchored directly below the `[Lọc]` button, right edge aligned with the right edge of the `[Lọc]` button.
+- **1:1 Mapping Rule (Bảng có cột nào thì Drawer bộ lọc có trường đó)**:
+  - Every visible data column on the table **MUST** have a corresponding filter field in the filter popover.
+  - Exclusions: Checkbox, STT, Actions, Media/Attachments, Long text (Notes/Descriptions not indexed in DB).
+- **Input Type Mapping**:
+  - *Date / Time*: `DateRangeInput` (Từ ngày – Đến ngày).
+  - *Entity / Master Data (Created by, Updated by, Customer, Market, Employee...)*: `CustomSelect` / `CustomMultiSelect` / `LazyCombobox` with quick search.
+  - *Status / Workflow*: `CustomSelect` fixed list (single/multi-select).
+  - *Identifiers (Mã phiếu, Báo giá, PO...)*: `Input` (exact or contains).
+  - *Quantity / Amount*: Number Range (Từ giá trị – Đến giá trị).
+- **Popover Internal Sections**:
+  - **Header**: "Bộ lọc" + `[X]` close button.
+  - **Base Fields First**: Trạng thái phiếu, Ngày tạo (Range), Thao tác lần cuối (Range).
+  - **Business Fields**: Following column display order.
+  - **Footer**: `[Đặt lại]` (reset all) + `[Áp dụng]` (dispatch, close, **reset to Page 1**, update badge count `Bộ lọc (3)`).
+
+### 5.2. FilterPopoverLayout Implementation Patterns & Common Pitfalls
+1. **Explicit `current` Filter Object**:
+   - Always pass an explicit object to `current={{ status, fromDate, toDate, ... }}` matching your screen's filters.
+   - Do NOT pass raw `queryParams` directly without omitting pagination params (`page`, `pageSize`, `sortBy`, `sortOrder`, `searchCondition`, `q`), otherwise the filter button will erroneously display an active badge (e.g. `Bộ lọc (2)`) on initial page load.
+2. **Master Data vs. Work Item Status Key**:
+   - Master Data schemas use `status` (number: 0/1/2/3).
+   - Work Item schemas use `statusCode` (string) or `stepId`.
+3. **Date Range Input (`DateRangeInput`)**:
+   - Must handle `fromDate` and `toDate` selection and propagate `onChange` properly into draft state.
+4. **Automatic Reset to Page 1 on Apply / Reset**:
+   ```tsx
+   <FilterPopoverLayout
+     current={{ status, fromDate, toDate }}
+     onApply={(values) => updateFilters({ ...values, page: 1 })}
+     onClear={(values) => updateFilters({ ...values, page: 1 })}
+   >
+     {/* Custom business filter inputs */}
+   </FilterPopoverLayout>
+   ```
+5. **Declare Filter Keys in Router & Hook**:
+   - `PostSearchSchema` in route file (`index.tsx`) must define all filter fields:
+     ```tsx
+     export const PostSearchSchema = z.object({
+       page: z.number().default(1),
+       pageSize: z.number().default(10),
+       sortBy: z.string().optional(),
+       sortOrder: z.enum(['asc', 'desc']).optional(),
+       searchCondition: z.string().optional(),
+       name: z.string().optional(),
+       code: z.string().optional(),
+       status: z.coerce.number().optional(),
+       fromDate: z.string().optional(),
+       toDate: z.string().optional(),
+     });
+     ```
+   - `useTableChange` must list all filter keys in `filterKeys`:
+     ```tsx
+     const { updateFilters, handleSortingChange, handlePaginationChange } =
+       useTableChange<IDeliveryVehicleTypeParams>({
+         fullPath,
+         searchData: queryParams,
+         filterKeys: ['name', 'code', 'status', 'fromDate', 'toDate'],
+       });
+     ```
+
+### 5.3. State & Pagination Auto-Reset Logic
+- **Maintain Filter on Sort**: Keep all active conditions from Quick Search and Filter Popover when sorting.
+- **Automatic Reset to Page 1**: The table **MUST** automatically reset to Page 1 (`page = 1`) whenever:
+  1. Quick Search keyword changes.
+  2. Filter `[Áp dụng]` or `[Đặt lại]` is clicked.
+  3. Sort column or direction is changed.
+- **URL Query Sync**: Sync state with URL params (`page`, `page_size`, `search`, `filter`, `sort_by`, `order`).
+
+---
+
+## 6. Slide-out Sheet Form Standards (85% Width Rule)
+
+Form components for business tickets and request documents ("Phiếu") must **NEVER** be modal dialogs. They must always use a slideout `Sheet` (`side="right"`) standardized strictly to **85% width**:
+```tsx
+<SheetContent
+  side="right"
+  className="w-full sm:max-w-[85%] p-0 gap-0 border-l shadow-xl flex flex-col"
+  onInteractOutside={(e) => e.preventDefault()}
+>
+```
+
+### 6.1. 3-Section Architecture
+1. **Header (Pinned Top)**:
+   - Padding: `py-3 px-5` (dọc 12px, ngang 20px), border-bottom: `1px solid #E5E5E5`.
+   - Title: `text-lg` or `text-xl`, font-semibold, brand color (`--Colors-Foreground-primary`).
+   - Back/Close button `[←]`: `36px × 36px`, rounded `8px`, border `1px solid #E5E5E5`, centered icon `20px × 20px`.
+2. **Main Content (Scrollable)**:
+   - Dedicated scroll container (`overflow-y: auto`), padding `20px` (`p-5`), vertical gap between major sections: `16px` (`gap-4`).
+3. **Footer (Pinned Bottom)**:
+   - Sticky at bottom (`position: sticky; bottom: 0; z-index: 50`), padding `py-3 px-5`, border-top `1px solid #E5E5E5`, background `#FFFFFF`.
+   - Right-aligned buttons with height `36px`, rounded `8px`:
+     - `[Hủy]` (Secondary): Border `1px solid #E5E5E5`, text gray `#424242`.
+     - `[Lưu] / [Áp dụng]` (Primary): Brand background (`--Colors-Background-primary`), text white `#FFFFFF`, font-semibold.
+
+### 6.2. General Information Section ("Thông tin chung" Card Frame)
+- Section Title: Placed **outside** the Card, `16px` (`text-base`), font-semibold, color `#141414`, margin-bottom `8px`.
+- Form Container Card: Background `--Colors-Background-secondary` (`#FAFAFA` / `--Colors-Gray-50`), rounded `12px` (`rounded-xl`), padding `16px` (`p-4`), row spacing `12px` (`gap-3`).
+- **Field Spacing**:
+  - **Related Fields (Cụm liên quan mật thiết)**: Gap **8px** (`gap-2`). Applied to Address hierarchy, Date ranges, Price ranges.
+  - **Independent Fields (Trường độc lập)**: Gap **12px** (`gap-3`).
+
+### 6.3. Detail Table Section in Slideout ("Bảng chi tiết")
+- Section Title: `16px`, font-semibold.
+- `[+ Thêm dòng]` Button: Aligned flush to right edge on the same line as the title/tabs. Style: Secondary Outlined Primary (border `1px solid` brand color, background `#FFFFFF`, hover brand-50, text brand color, font-semibold, height `28px – 32px`, rounded `6px – 8px`).
+- Detail table adheres to Sub-Table rules (Zero-gap tabs, `rounded-tl-none`, header min-height 44px, Teal-50 background).
+
+---
+
+## 7. Navigation & Top Header Standards
+
+- **Header (Top Bar)**: Fixed height `60px` (`height: 60px; min-height: 60px`), sticky top (`position: sticky; top: 0; z-index: 100`). All child elements vertically centered (`align-items: center`). Sửa lỗi line-height lệch dòng.
+- **Parent Nav (Primary Sidebar Cấp 1)**: Fixed width `64px`, background `#0F0F0F` (`--Colors-Background-base-invert`). Logo container `64px × 72px` centered. Menu icon containers `40px × 40px` with `border-radius: 12px` centered horizontally. Icons `20px × 20px` (default opacity 80%; selected opacity 100% with container background in brand accent `--brand-500`). Bottom toggle/footer with border-top `1px solid #E5E5E5`.
+- **Sub-Nav (Secondary Sidebar Cấp 2)**: Typography `14px` Semibold (`text-sm font-semibold`), icon `16px × 16px` vertically centered. Default text `--Colors-Foreground-secondary`. Selected item: background `--brand-500`, text & icon pure white `#FFFFFF` (`--Colors-Text-white`), `border-radius: 8px` (`rounded-lg`), padding `8px 12px` (`py-2 px-3`).
+
+---
+
+## 8. Design System Tokens & Styling Rules
+
+The system operates on a 3-layer design token architecture:
+- **Layer 0 (Primitives - Value)**: Base palettes and Spacing (0px to 1920px).
+- **Layer 1 (Brands)**: Maps `--brand-*` tokens per module:
+  - **DocMag / BizDoc**: Teal (`--Colors-Teal-*`, `--brand-500: #009955`)
+  - **DocFlow**: Blue (`--Colors-Blue-brand-*`)
+  - **CRM**: Ochre-Orange (`--Colors-Ochre-Orange-*`)
+  - **Helpdesk**: Purple (`--Colors-Purple-brand-*`)
+  - **Interactive**: Midnight-Navy (`--Colors-Midnight-Navy-*`)
+  - **WorkFlow**: Deep-Teal (`--Colors-Deep-Teal-*`)
+  - **HRM**: Indigo (`--Colors-Indigo-*`)
+  - **ERP**: Blue-light / Indigo
+- **Layer 2 (Modes / Semantics)**: Semantic tokens consumed directly on UI components:
+  - *Foreground*: `Colors-Foreground-base` (#141414), `Colors-Foreground-secondary` (#424242), `Colors-Foreground-primary` (`var(--brand-500)`), `Colors-Foreground-error`, `warning`, `success`.
+  - *Border*: `Colors-Border-secondary` (#E5E5E5), `Colors-Border-primary` (`var(--brand-500)`), `Colors-Border-base` (#CCCCCC).
+  - *Background*: `Colors-Background-base` (#FFFFFF), `Colors-Background-secondary` (#FAFAFA), `Colors-Background-base-invert` (#0F0F0F), `Colors-Background-selected-primary` (`var(--brand-50)`), `Colors-Background-primary` (`var(--brand-500)`).
+  - *Accents*: `Accent-{purple, red, green, gray, gray_blue, blue_light, blue, indigo, rose, orange}-{bg, bg_hover, brd, fg, bg-solid}`.
+  - *Shadows*: `Shadows/shadow-md` (`box-shadow: 0px 2px 4px -2px rgba(16, 24, 40, 0.05), 0px 4px 8px -2px rgba(16, 24, 40, 0.10);`).
+
+> [!CAUTION]
+> **STRICT BAN ON HARDCODED HEX COLORS**: NEVER hardcode hex codes (e.g., `#009955`, `#E5E5E5`, `#FAFAFA`) directly in UI components. Always use Layer 2 Semantic CSS Variables or Tailwind semantic utility classes (`bg-primary`, `text-primary`, `bg-sub-primary`, `border-border`, `text-foreground`, etc.).
+
+### 8.1. Zero Hardcoded Text Rule (MANDATORY i18n)
+- **NEVER hardcode raw text strings anywhere in the UI** (table column headers, page titles, button labels, placeholders, empty messages, validation errors, dialog/sheet titles, toast notifications).
+- Every visible string MUST route through `useTranslation` with proper namespaces and fallback `defaultValue`:
   ```tsx
-  toolbarProps={{
-    searchValue: searchText,
-    onSearchChange: setSearchText,
-    searchDebounce: 300,
-    searchPlaceholder: t('myTicket:detail.searchPlaceholder', { defaultValue: 'Tìm kiếm...' }),
-    filterLabel: t('common:filter', { defaultValue: 'Lọc' }),
-    filterPopoverTitle: t('myTicket:detail.filterTitle', { defaultValue: 'Bộ lọc chi tiết' }),
-    filterCount: activeFilterCount,
-    totalCount: details.length,
-    filteredCount: filteredDetails.length,
-    renderFilterContent: (close) => (
-      <form
-        className="space-y-4 w-200"
-        onSubmit={(e) => {
-          e.preventDefault();
-          close();
-        }}
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {/* Use CustomSelect, Combobox, LazyCombobox, DatePicker - NEVER raw <select> or <option> */}
-        </div>
-        <div className="flex justify-end gap-2 pt-3 border-t">
-          <Button type="button" variant="outline" size="sm" onClick={resetFilters}>
-            {t('action:reset', { defaultValue: 'Đặt lại' })}
-          </Button>
-          <Button type="submit" size="sm">
-            {t('action:apply', { defaultValue: 'Áp dụng' })}
-          </Button>
-        </div>
-      </form>
-    ),
-  }}
+  const { t } = useTranslation(['customsDeclaration', 'common', 'action', 'message']);
+
+  // ✅ Clean table header localization
+  header: t('customsDeclaration:columns.declarationType', { defaultValue: 'Loại hình' })
+  header: t('customsDeclaration:columns.registrationDate', { defaultValue: 'Ngày đăng ký' })
+  header: t('action:actions', { defaultValue: 'Thao tác' })
+
+  // ✅ Clean page heading and button localization
+  <h1 className="text-xl font-bold text-foreground">
+    {t('customsDeclaration:title', { defaultValue: 'Quản lý Tờ khai Hải quan' })}
+  </h1>
+  <Button>{t('action:exportExcel', { defaultValue: 'Xuất Excel' })}</Button>
+  <Button>+ {t('customsDeclaration:action.create', { defaultValue: 'Tạo Tờ khai' })}</Button>
+  <Button><Eye /> {t('action:detail', { defaultValue: 'Chi tiết' })}</Button>
   ```
 
+---
 
-## 4. UI & Styling Rules
+## 9. Resource Version Badge (`ResourceVersionBadge`)
 
-- Exclusively use **TailwindCSS** utility classes.
-- When concatenating dynamic CSS classes based on state, always use the `cn()` utility (combining `clsx` and `tailwind-merge`) instead of manual template literals or array joins.
-  - Example: `className={cn("p-4 bg-white", isActive && "bg-blue-500", className)}`
-- **Zero Hardcoded Text Rule (MANDATORY i18n):**
-  - **NEVER hardcode raw text strings anywhere in the UI** (table column headers, page titles, button labels, placeholders, empty messages, validation errors, dialog/sheet titles, toast notifications).
-  - **STRICTLY FORBIDDEN ANTI-PATTERNS:**
-    ```tsx
-    // ❌ FORBIDDEN: Raw string literals in table headers
-    header: 'Loại hình'
-    header: 'Ngày đăng ký'
-    header: 'Thao tác'
+For all screens handling business documents and workflow tickets:
+- Integrate **`ResourceVersionBadge`** (from `@shared/components`) with `resourceName` passed using `WorkItemCategoryCode`:
+  ```tsx
+  <ResourceVersionBadge resourceName={`${WorkItemCategoryCode.DeliveryPackaging}`} />
+  ```
+  *(Version numbers and changelog tooltips are configured in `frontend/shared/config/resource-version.json`).*
 
-    // ❌ FORBIDDEN: Raw string literals in headings and buttons
-    <h1 className="text-xl font-bold text-foreground">Quản lý Tờ khai Hải quan</h1>
-    <Button>Xuất Excel</Button>
-    <Button>+ Tạo Tờ khai</Button>
-    <Button><Eye /> Chi tiết</Button>
-    ```
-  - **MANDATORY PATTERN:**
-    Every visible string MUST route through `useTranslation` with proper namespaces and fallback `defaultValue`:
-    ```tsx
-    const { t } = useTranslation(['customsDeclaration', 'common', 'action', 'message']);
+### Locations:
+1. **Detail View Header (`WorkItemDetailLayout`)**:
+   ```tsx
+   title={
+     <div className="flex items-center gap-2">
+       <span>{entityName || t('{ticket}:title')}</span>
+       <ResourceVersionBadge resourceName={`${WorkItemCategoryCode.SampleTicket}`} />
+     </div>
+   }
+   ```
+2. **Sheet / Dialog Form Headers (`SheetTitle` / `DialogTitle`)**:
+   ```tsx
+   <SheetTitle className="text-lg font-bold text-primary flex items-center gap-2">
+     <span>{titleText}</span>
+     <ResourceVersionBadge resourceName={`${WorkItemCategoryCode.SampleTicket}`} />
+   </SheetTitle>
+   ```
+3. **List Page Headers (`index.tsx`)**:
+   ```tsx
+   <div className="text-xl font-bold flex items-center gap-2">
+     <span>{t('title')}</span>
+     <ResourceVersionBadge resourceName={`${WorkItemCategoryCode.SampleTicket}`} />
+   </div>
+   ```
 
-    // ✅ Clean table header localization
-    header: t('customsDeclaration:columns.declarationType', { defaultValue: 'Loại hình' })
-    header: t('customsDeclaration:columns.registrationDate', { defaultValue: 'Ngày đăng ký' })
-    header: t('action:actions', { defaultValue: 'Thao tác' })
+---
 
-    // ✅ Clean page heading and button localization
-    <h1 className="text-xl font-bold text-foreground">
-      {t('customsDeclaration:title', { defaultValue: 'Quản lý Tờ khai Hải quan' })}
-    </h1>
-    <Button>{t('action:exportExcel', { defaultValue: 'Xuất Excel' })}</Button>
-    <Button>+ {t('customsDeclaration:action.create', { defaultValue: 'Tạo Tờ khai' })}</Button>
-    <Button><Eye /> {t('action:detail', { defaultValue: 'Chi tiết' })}</Button>
-    ```
-  - Common examples:
-    ```tsx
-    emptyMessage={t('common:noData', { defaultValue: 'Không có dữ liệu' })}
-    placeholder={t('overtime:detail.searchPlaceholder', { defaultValue: 'Tìm theo mã hoặc tên nhân viên...' })}
-    ```
-
-## 5. React Hooks & Performance
-
-- **Hook Dependencies:** Provide comprehensive and accurate dependency arrays for `useEffect`, `useCallback`, and `useMemo`. Prevent unnecessary re-renders by memoizing functions and computed values passed to child components.
-- **Asynchronous Operations in `useEffect`:** When executing async logic inside `useEffect`, always include a cleanup mechanism (such as `AbortController`) to cancel pending requests if the component unmounts before response arrival.
-
-## 6. Permissions & Access Control
-
-- **List Screens (Tables):** Always integrate the `useHasPermission` hook to conditionally toggle actions (Add, Edit, Delete).
-- **Form Dialogs / Sheets (Add/Edit):** Always integrate `useFormPermissions` to apply readonly/disabled flags to form controls when permissions are insufficient.
-
-## 7. TypeScript Standards (Strict Type Safety)
+## 10. TypeScript Standards (Strict Type Safety)
 
 All code must strictly adhere to TypeScript strict mode. The core tenets are **"Single Source of Truth"** and **"Type Safety"**.
 
-### 7.1. Ban `any` and Proper Use of `unknown`
-
+### 10.1. Ban `any` and Proper Use of `unknown`
 - ⚠️ **Strictly avoid `any` and forced type assertion `as any`**. Using `any` defeats TypeScript compilation guarantees.
-- **Use `unknown` as the Safe Alternative:** When dealing with unverified or external dynamic data (e.g., non-standard 3rd-party payloads, or `error` in `catch` blocks), assign the type as `unknown`.
-- **Type Guards & Narrowing:** Never access properties directly on an `unknown` variable. Narrow types using `typeof`, `instanceof`, or Zod validation schemas prior to consumption.
+- **Use `unknown` as the Safe Alternative:** When dealing with unverified or external dynamic data, assign the type as `unknown`.
+- **Type Guards & Narrowing:** Narrow types using `typeof`, `instanceof`, or Zod validation schemas prior to consumption.
 
-### 7.2. Synchronize Types with Zod (Single Source of Truth)
-
-- Since the project relies on Zod for form and parameter validation, **never manually declare redundant Types/Interfaces that duplicate Zod schemas**.
-- **Rule:** Always define the Zod schema first, then extract the TypeScript type via `z.infer`.
+### 10.2. Synchronize Types with Zod (Single Source of Truth)
+- Always define the Zod schema first, then extract the TypeScript type via `z.infer`.
   - ✅ **Correct:**
     ```typescript
     export const userFormSchema = z.object({ name: z.string(), age: z.number() });
@@ -299,88 +467,16 @@ All code must strictly adhere to TypeScript strict mode. The core tenets are **"
     ```
   - ❌ **Incorrect:** Declaring `interface IUserForm` and then duplicating the identical structure in `z.object({...})`.
 
-### 7.3. Component & Hook Type Specifications
-
-- **Props & State:** Explicitly type component `Props` and `useState` state variables.
-  - Example: `const [users, setUsers] = useState<IUser[]>([]);`
-- **Children Prop:** When a component accepts `children`, always declare the prop type as `React.ReactNode`.
-  - Example: `type TCardProps = { title: string; children: React.ReactNode };`
-- **Event Handlers:** Use built-in React Synthetic Event types instead of generic `Function` or `(e) => void`.
+### 10.3. Component & Hook Type Specifications
+- Explicitly type component `Props` and `useState` state variables.
+- When a component accepts `children`, always declare the prop type as `React.ReactNode`.
+- Use built-in React Synthetic Event types instead of generic `Function` or `(e) => void`:
   - Form Submit: `React.FormEvent<HTMLFormElement>`
   - Input Change: `React.ChangeEvent<HTMLInputElement>`
   - Mouse Click: `React.MouseEvent<HTMLButtonElement>`
 
-### 7.4. Utility Types for DRY Principles
+### 10.4. Utility Types for DRY Principles
+- Leverage standard TypeScript utility types: `Pick<Type, Keys>`, `Omit<Type, Keys>`, `Partial<Type>`, `Record<Keys, Type>`.
 
-- When a new type resembles an existing type (adding/omitting or changing optionality of select fields), **never copy-paste fields**.
-- Leverage standard TypeScript utility types:
-  - `Pick<Type, Keys>`: Extract specific fields from a base type.
-  - `Omit<Type, Keys>`: Omit specific fields from a base type.
-  - `Partial<Type>`: Make all properties optional.
-  - `Record<Keys, Type>`: Define typed dictionaries instead of `{[key: string]: any}`.
-
-### 7.5. Restrict Type Assertions (`as`)
-
-- Type assertions bypass compiler safety. Restrict `as` strictly to:
-  1. Direct DOM manipulation (e.g., `event.target as HTMLInputElement`).
-  2. Generic 3rd-party libraries where type inference is unavailable.
-- In all other cases, utilize type guards or runtime schema validation.
-
-### 7.6. Third-Party Library Types
-
-- Always import types directly from official library declarations (`@types/...` or built-in library exports).
-- If a legacy module lacks types, create a dedicated `.d.ts` declaration file in `src/types` rather than falling back to `any`.
-
-### 7.7. API Response Types
-
+### 10.5. API Response Types
 - All API responses fetched through React Query or Axios must be wrapped in standardized system generic response types (e.g., `ApiResponse<T>` or `IBaseResponse<T>`).
-
----
-
-## 8. Resource Version Badge (`ResourceVersionBadge`) for All Tickets & Business Documents
-
-For all screens handling business documents and workflow tickets:
-
-- Integrate **`ResourceVersionBadge`** (from `@shared/components`) with `resourceName` passed using `WorkItemCategoryCode`:
-  ```tsx
-  <ResourceVersionBadge resourceName={`${WorkItemCategoryCode.DeliveryPackaging}`} />
-  ```
-  *(Version numbers and changelog tooltips are configured in `frontend/shared/config/resource-version.json`).*
-
-### 1. In Detail View Header (`WorkItemDetailLayout`):
-```tsx
-title={
-  <div className="flex items-center gap-2">
-    <span>{entityName || t('{ticket}:title')}</span>
-    <ResourceVersionBadge resourceName={`${WorkItemCategoryCode.SampleTicket}`} />
-  </div>
-}
-```
-
-### 2. In Detail Header Card / InfoField (when `isAdmin`):
-```tsx
-const isAdmin = useAuthStore((s) => Boolean(s.user?.hasFullSystemAccess || (s.user as any)?.isAdmin));
-
-{isAdmin && (
-  <InfoField
-    label={t('common:version', { defaultValue: 'Phiên bản' })}
-    value={<ResourceVersionBadge resourceName={`${WorkItemCategoryCode.SampleTicket}`} />}
-  />
-)}
-```
-
-### 3. In Sheet / Dialog Form Headers (`SheetTitle` / `DialogTitle`):
-```tsx
-<SheetTitle className="text-lg font-bold text-primary flex items-center gap-2">
-  <span>{titleText}</span>
-  <ResourceVersionBadge resourceName={`${WorkItemCategoryCode.SampleTicket}`} />
-</SheetTitle>
-```
-
-### 4. In List Page Headers (`index.tsx`):
-```tsx
-<div className="text-xl font-bold flex items-center gap-2">
-  <span>{t('title')}</span>
-  <ResourceVersionBadge resourceName={`${WorkItemCategoryCode.SampleTicket}`} />
-</div>
-```

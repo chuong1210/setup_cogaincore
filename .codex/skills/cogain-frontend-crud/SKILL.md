@@ -19,8 +19,11 @@ This skill guides AI agents in scaffolding complete, standardized Frontend struc
   - Use `ResizableWrapTable` for detail lists and dynamic child tables.
   - Use `SortableWrapTable` when drag-and-drop row reordering is needed.
   - Use `CustomTable` with `useTableChange` for server-side paginated list screens.
+  - **Clean Table Header & Single-Sort**: Headers strictly contain `[Tên cột] + [Icon Sort]` (`⇅`, `↑`, `↓`). 100% eliminate inline filter dropdowns or search funnels from table header cells.
+  - **Golden Rule of Column Alignment**: Header and Body Cell MUST share identical alignment. Text/Names/Long Strings -> `align: 'left'`; Numbers/Currency -> `align: 'right'`; Short IDs/Dates/Times (`ModifierInfo` 2-line)/Status (`StatusTag`)/Actions -> `align: 'center'`.
+  - **Top Action Bar Geometry**: Strict order: `[ Search ] ──> [ Filter ] ──> [ Import ] ──> [ Export ] ──> [ + Add New ] ──> [ Divider 1px x 20px, margin 8px ] ──> [ ⚙ Settings 36x36 ]`. Uniform 36px height (`h-9`).
 - **Strict Ban on Raw HTML Controls (Use Shared Components)**: **NEVER** use raw native HTML form controls: `<select>`, `<option>`, `<input type="date">`, `<input type="time">`, `<input type="number">`, or raw `<table>/<tr>/<td>`. Always use `@shared/components` and `@shared/ui` (`CustomSelect`, `LazyCombobox`, `Combobox`, `DatePicker`, `DateRangeInput`, `NumericInput`, `Input`, `DebouncedInput`).
-- **List Page Filter Popover**: **NEVER** place raw inline select tags or ad-hoc filter toolbars in the page header. Scaffolding must use a dedicated `<[Entity]FilterPopover>` with active filter count badges and Apply/Reset actions.
+- **List Page Filter Popover (`FilterPopoverLayout`)**: **NEVER** place raw inline select tags or ad-hoc filter toolbars in the page header. Scaffolding must use a dedicated `<[Entity]FilterPopover>` with 1:1 table column mapping, explicit `current` object (excluding pagination/sort params), active filter count badges, and auto-reset pagination to `page: 1` on Apply/Reset.
 - **Mandatory Detail Table Search & Filter Popover**: Every detail table MUST configure `toolbarProps` on `ResizableWrapTable` with `searchValue`, `onSearchChange`, and `renderFilterContent: (close) => <form className="space-y-4 w-200">` using a responsive multi-column layout (`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4`).
 - **Resource Version Badge**: Integrate `<ResourceVersionBadge resourceName={`${WorkItemCategoryCode.Ticket}`} />` in page titles and headers.
 - **Strict Zero Hardcoded Strings (MANDATORY i18n)**: **NEVER** hardcode raw text in table column headers (e.g. `header: 'Loại hình'`), page headings (e.g. `<h1>Quản lý Tờ khai</h1>`), buttons, or placeholders. All text MUST use namespaced translations with fallback `defaultValue`: `t('namespace:key', { defaultValue: '...' })`.
@@ -61,6 +64,8 @@ src/routes/_app/[module-group]/[my-entity]/
 
 1. Ensure TanStack Router compiles route tree automatically without modifying `routeTree.gen.ts`.
 2. Verify `controller` in `createBaseService` targets the correct microservice route prefix and controller name (kebab-case).
-3. Ensure all translation keys used in forms and tables are registered in the corresponding `locales/` or `i18n/` JSON files.
-4. Ensure filters in table columns have `size="sm"`.
-5. Ensure `npm run build` or typecheck passes with 0 errors.
+3. Ensure all translation keys used in forms and tables are registered in the corresponding `locales/` or `i18n/` JSON files with fallback `defaultValue`.
+4. Ensure table headers are clean (no inline filter inputs), single-sort is configured, and all filters are in `<[Entity]FilterPopover>`.
+5. Ensure Golden Rule of Column Alignment is strictly followed across all columns (Text left, Numbers right, Short IDs/Dates/Status/Actions center).
+6. Ensure Action Bar follows exact order (Search ➔ Filter ➔ Import ➔ Export ➔ Add ➔ Divider 1px x 20px ➔ Settings 36x36) with uniform 36px height.
+7. Ensure `npm run build` or typecheck passes with 0 errors.

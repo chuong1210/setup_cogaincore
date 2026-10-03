@@ -136,9 +136,23 @@ Determine form container based on field count:
 ### Step 4: Scaffold the Listing Page Component
 1. If hierarchical, use `<TreeTable>` with `buildTreeData` and `deepFilterTree`.
 2. If flat, use `<CustomTable>` or `<ResizableWrapTable>` with `useTableChange`.
-3. Integrate `useGenerationCode` for code auto-numbering.
-4. Add column filtering: `DebouncedInput` for text, `CustomSelect` for status/types, `DateRangeInput` for modified date.
-5. Add `ActionStack` with `Plus`, `ImportButton`, `ExportButton`.
+3. **Clean Table Header & Single-Sort**:
+   - Headers strictly contain `[Tên cột] + [Icon Sort]` (`⇅`, `↑`, `↓`).
+   - Eliminate all inline filter dropdowns or search funnels from header cells.
+4. **Golden Rule of Column Alignment**:
+   - Header and Body Cell MUST share the exact same alignment.
+   - Text / Names / Long Strings -> `align: 'left'` (Header & Body left-aligned).
+   - Numbers & Currency -> `align: 'right'` (Header & Body right-aligned).
+   - Short IDs / Dates / Times (`ModifierInfo` 2-line) / Status (`StatusTag`) / Actions -> `align: 'center'` (Header & Body centered).
+5. **Top Action Bar Geometry**:
+   - Left-to-right order: `[ Quick Search ] ──> [ Filter Button ] ──> [ Import ] ──> [ Export ] ──> [ + Add New ] ──> [ Divider 1px x 20px, margin 8px ] ──> [ ⚙ Settings 36x36 ]`.
+   - Height strictly `36px` (`h-9`).
+6. **Filter Popover (`FilterPopoverLayout`)**:
+   - 1:1 mapping with table columns.
+   - Explicit `current={{ status, fromDate, toDate, ... }}` (exclude system pagination/sort params).
+   - On Apply / Clear: auto-reset table pagination to `page: 1` (`updateFilters({ ...values, page: 1 })`).
+   - All filter keys registered in `useTableChange({ filterKeys: [...] })` and in route `PostSearchSchema`.
+7. Integrate `useGenerationCode` for code auto-numbering.
 
 ### Step 5: Route Configuration
 Register the route using TanStack Router:

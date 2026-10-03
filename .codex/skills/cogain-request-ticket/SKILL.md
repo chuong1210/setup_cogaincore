@@ -126,14 +126,28 @@ Create `{Ticket}Service.cs`:
    - Wrap with `createBaseService`.
    - Add `changeStep(id, body)` and `exportData(params)`.
 
-### Step 7: Build List Page Filter Popover, Slideout Form & Dynamic Child Table
-1. **List Page Filtering (`<Ticket>FilterPopover`)**:
+### Step 7: Build List Page, Filter Popover, Slideout Form & Dynamic Child Table
+1. **4 Foundation Columns & Golden Rule of Alignment on List Tables**:
+   - Every ticket list table **MUST** render at least:
+     1. `Mã phiếu`: Text link (opens detail), sticky pinned left, sorts by code string (`align: 'center'`).
+     2. `Trạng thái phiếu`: Status badge according to Design System tokens (`align: 'center'`).
+     3. `Ngày tạo`: 2-line cell with `ModifierInfo` (Line 1: Calendar icon + DD/MM/YYYY HH:mm; Line 2: User icon + Username/Staff code) (`align: 'center'`).
+     4. `Ngày cập nhật`: 2-line cell with `ModifierInfo` (Line 1: Calendar icon + DD/MM/YYYY HH:mm; Line 2: User icon + Username/Staff code) (`align: 'center'`).
+   - **Golden Rule of Alignment**: Header and Body Cell MUST share identical alignment:
+     - Text / Long Strings -> `align: 'left'`
+     - Numbers / Currency -> `align: 'right'`
+     - Short IDs / Dates / Times / Status / Actions -> `align: 'center'`
+2. **Top Action Bar Standards**:
+   - Order: `[ Quick Search ] ──> [ Filter Button ] ──> [ Import ] ──> [ Export ] ──> [ + Add New ] ──> [ Divider 1px x 20px, margin 8px ] ──> [ ⚙ Settings 36x36 ]`.
+   - Uniform 36px height (`h-9`).
+   - Clean Table Header: Single-sort icon only (`⇅`, `↑`, `↓`), NO inline filter dropdowns or search funnels.
+3. **List Page Filtering (`<Ticket>FilterPopover`)**:
    - **NEVER** combine raw inline `<select>` tags or ad-hoc filters directly into the toolbar of list screens.
    - **MANDATORY**: Build a dedicated `<[Ticket]FilterPopover>` component using **`FilterPopoverLayout`** (from `@shared/components`) or `Popover` (from `@shared/ui`). Reference: `AcceptanceMinuteFilterPopover` or `InstallationOrderFilterPopover`.
-   - The trigger button displays a `Filter` icon, label "Lọc", and an active badge when `filterCount > 0`.
-   - Popover content: structured domain filters (`ProjectCombobox`, `CustomSelect` with icons/badges, steps, quantity/date ranges) with Apply and Reset buttons.
-2. **Slideout Form (`Sheet`) — 85% Width Standard**:
-   - **MANDATORY**: All ticket forms must use a **Slideout Sheet** (`Sheet` from `@shared/ui` with `side="right"`) standardized to **85% width**:
+   - The trigger button displays a `Filter` icon, label "Bộ lọc", and an active badge when `filterCount > 0`. Exclude system pagination/sort params from count.
+   - 1:1 mapping with table columns. Auto-reset pagination to `page: 1` on Apply/Reset.
+4. **Slideout Form (`Sheet`) — 85% Width Standard & 3-Section Architecture**:
+   - **MANDATORY**: All ticket forms must use a **Slideout Sheet** (`Sheet` from `@shared/ui` with `side="right"`) standardized strictly to **85% width**:
      ```tsx
      <SheetContent
        side="right"
@@ -142,21 +156,24 @@ Create `{Ticket}Service.cs`:
      >
      ```
    - Never use basic modal dialogs.
-   - Use `SheetHeader` with `SheetTitle` including `<ResourceVersionBadge resourceName={`${WorkItemCategoryCode.Ticket}`} />`.
-   - Scrollable body (`className="flex-1 overflow-y-auto px-6 py-5 space-y-4"`).
-   - Sticky footer (`<SheetFooter className="border-t bg-muted/20 px-6 py-3">`).
-   - Use `useRefDocSelector` for reference document selection with `RefDocumentSelector`.
-3. **Strict Ban on Raw HTML Controls (Use Shared Components)**:
+   - **3 Fixed Sections**:
+     1. Header pinned top (py-3 px-5, border-b, 36x36 back button `[←]`, `<ResourceVersionBadge />`).
+     2. Main content scrollable (`overflow-y: auto`, padding 20px `p-5`, gap 16px `gap-4`).
+        - General Information Card: Background `--Colors-Background-secondary` (`#FAFAFA`), rounded-xl, padding 16px (`p-4`), gap-3. Related fields gap 8px (`gap-2`), independent fields gap 12px (`gap-3`).
+     3. Footer pinned bottom (`sticky bottom-0 z-50`, py-3 px-5, border-t, bg-white, 36px buttons: `[Hủy]` and `[Lưu]`).
+5. **Strict Ban on Raw HTML Controls (Use Shared Components)**:
    - **NEVER use raw HTML controls** like `<select>`, `<option>`, `<input type="date">`, `<input type="time">`, or `<input type="number">`.
    - Use `CustomSelect`, `CustomMultiSelect`, `Combobox`, `LazyCombobox`, `DatePicker` (with `showTime={true}` if needed), `DateRangeInput`, and `NumericInput`.
-4. **Hook Layer Encapsulation (No Direct Service Calls in TSX)**:
+6. **Hook Layer Encapsulation (No Direct Service Calls in TSX)**:
    - **NEVER call service instances directly in TSX/JSX**. Always consume queries and mutations (`createMutation`, `updateMutation`, `changeStepMutation`) through the custom hook `use<Ticket>()`.
-5. **Zero Hardcoded Text**:
+7. **Zero Hardcoded Text**:
    - **NEVER hardcode raw text strings**. All UI text (labels, placeholders, empty states, validation messages, button text) must use `useTranslation` with fallback `defaultValue` (e.g. `t('ticket:field', { defaultValue: 'Text' })`).
-6. **Detail Dynamic Table with Mandatory Search & Filter (`ResizableWrapTable`)**:
+8. **Detail Dynamic Table with Mandatory Search & Filter (`ResizableWrapTable`)**:
    - **NEVER use raw HTML `<table>`**.
    - **MANDATORY SEARCH & FILTER IN EVERY DETAIL TABLE**: Every detail table MUST have both search and filter configured via `toolbarProps` of `ResizableWrapTable`.
    - Wide multi-column filter layout: `renderFilterContent: (close) => <form className="space-y-4 w-200">` containing a multi-column responsive grid (`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4`) of Comboboxes / CustomSelect, and Reset/Apply buttons.
+   - `[+ Thêm dòng]` Button: right-aligned secondary outlined primary (border 1px solid brand color, bg #FFF, hover brand-50, text brand, font-semibold, 28-32px height, 6-8px rounded).
+   - Sub-table attached tabs: Zero-Gap rule (`margin-bottom: 0`, `gap: 0`, `rounded-tl-none`, header min-height 44px, Teal-50 background).
    - Use `SortableWrapTable` (from `@shared/components/sortable-wrap-table`) whenever rows require drag-and-drop row reordering.
    - Show snapshot labels in read-only mode to prevent lookup overhead.
 

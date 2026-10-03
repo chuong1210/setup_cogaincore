@@ -1,6 +1,6 @@
-# CogainCore Project Rules & Operating Contract (.claude/AGENTS.md)
+# CogainCore Project Rules & Operating Contract (.codex/AGENTS.md)
 
-This is the primary operating contract for Claude Code operating within `cogain-core`. All instructions and constraints defined herein are non-negotiable and strictly enforced.
+This is the primary operating contract for OpenAI Codex / Codex CLI operating within `cogain-core`. All instructions and constraints defined herein are non-negotiable and strictly enforced.
 
 ---
 
